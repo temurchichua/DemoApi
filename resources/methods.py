@@ -23,7 +23,7 @@ class TemSentenceTokenizer(Resource):
         else:
             return {'result': tokenized_words}, 200
 
-class FrequencyDistribution(Resource):
+class MarvelFrequencyDistribution(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('text',
                         type=str,
@@ -31,7 +31,7 @@ class FrequencyDistribution(Resource):
                         help="გთხოვთ შეიყვანოთ სწორი ტექსტი")
 
     def get (self):
-        data = FrequencyDistribution.parser.parse_args()
+        data = MarvelFrequencyDistribution.parser.parse_args()
         text = data['text']
         clean_text=word_tokenize(text)
         freqdist=FreqDist(clean_text)
