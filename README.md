@@ -84,3 +84,11 @@
 > "text" : "This is my demo text"
 > }
 > ```
+**DepTreeSvgMaker**
+>
+> Created dependency tree svg image and returns
+> ``` 
+> endpoint: _/DepTree
+> type: GET 
+> body: {
+> "sentence" : "Any Text"

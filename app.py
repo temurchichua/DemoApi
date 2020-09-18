@@ -14,6 +14,7 @@ from resources.methods import SentenceTokenizer
 from resources.frequencyReturner import FrequencyReturner
 from resources.methods import sentTok
 from resources.methods import SentTokenizer
+from resources.methods import DepTreeSvgMaker
 
 app = Flask(__name__)
 api = Api(app)
@@ -33,6 +34,7 @@ api.add_resource(SentenceTokenizer, '/sentence')
 api.add_resource(FrequencyReturner, '/FreqReturner')
 api.add_resource(sentTok, '/SentTok')
 api.add_resource(PosTagging, '/PosTag')
+api.add_resource(DepTreeSvgMaker,"/DepTree")
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
