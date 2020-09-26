@@ -92,3 +92,14 @@
 > type: GET 
 > body: {
 > "sentence" : "Any Text"
+
+**SentToken**
+>
+> ტექსტში წინადადებების ტოკენიზაცია
+>```
+> endpoint: _/SentToken
+> type: GET
+> body: {
+>"text" : "At least one sentence."
+>}
+>```
