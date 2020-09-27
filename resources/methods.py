@@ -105,24 +105,35 @@ class SentenceTokenizer(Resource):
 
 class DepTreeSvgMaker(Resource):
 
-	parser = reqparse.RequestParser()
-	parser.add_argument("sentence",
-						type=str,
-						required=True,
-						help="გთხოვთ შეიყვანოთ სწორი წინადადება")
+    parser = reqparse.RequestParser()
+    parser.add_argument("sentence",
+                        type=str,
+                        required=True,
+                        help="გთხოვთ შეიყვანოთ სწორი წინადადება")
 
-	nlp = spacy.load("en_core_web_sm")
+    nlp = spacy.load("en_core_web_sm")
 
-	def get(self):
-		data = self.parser.parse_args()
-		sentence = data["sentence"]
+    def get(self):
+        data = self.parser.parse_args()
+        sentence = data["sentence"]
 
-		try:
-			text = self.nlp(sentence)
-			svg = spacy.displacy.render(text,style="dep")
+        try:
+            text = self.nlp(sentence)
+            svg = spacy.displacy.render(text,style="dep")
 
-		except Exception as error:
-			return {'error' : error}
+        except Exception as error:
+            return {'error' : error}
 
-		return jsonify({'result': svg})
+        return jsonify({'result': svg})
 
+class SentToken(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('text',
+                        type = str,
+                        required = True,
+                        help = "შეიყვანეთ ტექსტი"
+                        )
+
+    def get(self):
+        text = SentToken.parser.parse_args()
+        return {"message" : f"Tokenized sentences: {sent_tokenize(text['text'])}"}
